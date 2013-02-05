@@ -1,13 +1,14 @@
 Demo::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/helper"
-  get "static_pages/about"
+
+  root  to: 'static_pages#home'
+  match '/help', to: 'static_pages#helper'
+  match '/about', to: 'static_pages#about'
+  match '/contact', to: 'static_pages#contact'
+  match '/signup', to: 'users#new'
+  match '/signin', to: 'static_pages#signin'
 
   resources :microposts
-
-
   resources :users
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
