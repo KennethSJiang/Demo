@@ -10,7 +10,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation
   #we need to add password and password_confirmation attributes, 
   #require the presence of the password, require that they match, and add 
   #an authenticate method to compare an encrypted password to the password_digest 
@@ -29,15 +29,13 @@ class User < ActiveRecord::Base
    end
    
   has_many :microposts
-  
-  def initialize(attributes={})
-    @name = attribute[:name]
-    @email = attribute[:email]
-  end
+ 
     
    def formatted_email
-     "#{@name} <#{@email}>"
+     "#{name.to_s} <#{email.to_s}>"
    end
+   
+   
    
 end
 
