@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
      user.email = email.downcase
    end
    
+  before_save :create_remember_token
   has_many :microposts
  
     
@@ -35,7 +36,10 @@ class User < ActiveRecord::Base
      "#{name.to_s} <#{email.to_s}>"
    end
    
-   
+   private
+   def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+   end
    
 end
 
